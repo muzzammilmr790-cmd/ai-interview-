@@ -75,27 +75,27 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
+    <div className="max-w-4xl mx-auto py-6 sm:py-8 px-3 sm:px-4">
       
       {/* Header Banner */}
-      <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold tracking-wider mb-4">
+      <div className="text-center mb-8 sm:mb-10">
+        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold tracking-wider mb-3 sm:mb-4">
           <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
           AI VOICE & VIDEO MOCK ROOM
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-3">
           Configure Your Mock Interview
         </h1>
-        <p className="text-slate-400 text-base max-w-xl mx-auto">
+        <p className="text-slate-400 text-xs sm:text-base max-w-xl mx-auto leading-relaxed">
           Tailor your role, difficulty, and questions. Get realistic camera-to-camera interview practice with instant AI scorecards.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
         
         {/* Role Title Input */}
-        <div className="bento-panel p-6 rounded-2xl">
-          <label className="block text-sm font-semibold text-white mb-2 flex items-center gap-2">
+        <div className="bento-panel p-4 sm:p-6 rounded-2xl">
+          <label className="block text-xs sm:text-sm font-semibold text-white mb-2 flex items-center gap-2">
             <Briefcase className="w-4 h-4 text-emerald-400" />
             Target Role Title
           </label>
@@ -105,16 +105,16 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
             onChange={(e) => setRoleTitle(e.target.value)}
             placeholder="e.g. Senior Full-Stack Engineer, React Developer"
             required
-            className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 text-sm font-medium"
+            className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-white focus:outline-none focus:border-emerald-500 text-xs sm:text-sm font-medium"
           />
         </div>
 
         {/* Category Selection */}
         <div>
-          <label className="block text-sm font-semibold text-white mb-3">
+          <label className="block text-xs sm:text-sm font-semibold text-white mb-3">
             Select Primary Category
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const isSelected = category === cat.id;
@@ -122,19 +122,19 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
                 <div
                   key={cat.id}
                   onClick={() => setCategory(cat.id as InterviewCategory)}
-                  className={`cursor-pointer p-5 rounded-2xl border transition-all ${
+                  className={`cursor-pointer p-4 sm:p-5 rounded-2xl border transition-all ${
                     isSelected
                       ? 'bg-slate-900 border-emerald-500 shadow-lg shadow-emerald-500/10'
                       : 'bento-card border-slate-800 hover:border-slate-700'
                   }`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`p-3 rounded-xl bg-gradient-to-tr ${cat.color} text-slate-950 shadow-md font-bold`}>
-                      <Icon className="w-5 h-5" />
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className={`p-2.5 sm:p-3 rounded-xl bg-gradient-to-tr ${cat.color} text-slate-950 shadow-md font-bold shrink-0`}>
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-base mb-1">{cat.title}</h3>
-                      <p className="text-slate-400 text-xs leading-relaxed">{cat.desc}</p>
+                      <h3 className="text-white font-bold text-sm sm:text-base mb-0.5 sm:mb-1">{cat.title}</h3>
+                      <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed">{cat.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -145,10 +145,10 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
 
         {/* Difficulty Level */}
         <div>
-          <label className="block text-sm font-semibold text-white mb-3">
+          <label className="block text-xs sm:text-sm font-semibold text-white mb-3">
             Select Target Difficulty
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
             {difficulties.map((diff) => {
               const isSelected = difficulty === diff.id;
               return (
@@ -156,14 +156,14 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
                   type="button"
                   key={diff.id}
                   onClick={() => setDifficulty(diff.id)}
-                  className={`p-4 rounded-xl border text-left transition-all ${
+                  className={`p-3 sm:p-4 rounded-xl border text-left transition-all ${
                     isSelected
                       ? 'bg-emerald-500/15 border-emerald-500 text-white font-bold'
                       : 'bg-slate-900/80 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
                   }`}
                 >
-                  <div className="font-bold text-sm mb-1">{diff.label}</div>
-                  <div className="text-[11px] text-slate-400 font-mono">{diff.badge}</div>
+                  <div className="font-bold text-xs sm:text-sm mb-0.5 sm:mb-1">{diff.label}</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono truncate">{diff.badge}</div>
                 </button>
               );
             })}
@@ -171,21 +171,21 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
         </div>
 
         {/* Question Count & Time Limits */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           
           {/* Question Count */}
-          <div className="bento-panel p-6 rounded-2xl">
-            <label className="block text-sm font-semibold text-white mb-2 flex items-center gap-2">
+          <div className="bento-panel p-4 sm:p-6 rounded-2xl">
+            <label className="block text-xs sm:text-sm font-semibold text-white mb-2 flex items-center gap-2">
               <HelpCircle className="w-4 h-4 text-cyan-400" />
               Number of Questions
             </label>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-3">
               {[1, 3, 5, 10].map((num) => (
                 <button
                   type="button"
                   key={num}
                   onClick={() => setQuestionCount(num)}
-                  className={`flex-1 py-2.5 rounded-xl border font-bold text-sm transition-all ${
+                  className={`flex-1 py-2 sm:py-2.5 rounded-xl border font-bold text-xs sm:text-sm transition-all ${
                     questionCount === num
                       ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-extrabold'
                       : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -198,12 +198,12 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
           </div>
 
           {/* Time Per Question */}
-          <div className="bento-panel p-6 rounded-2xl">
-            <label className="block text-sm font-semibold text-white mb-2 flex items-center gap-2">
+          <div className="bento-panel p-4 sm:p-6 rounded-2xl">
+            <label className="block text-xs sm:text-sm font-semibold text-white mb-2 flex items-center gap-2">
               <Clock className="w-4 h-4 text-emerald-400" />
               Time Per Question
             </label>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {[
                 { sec: 60, label: '60s' },
                 { sec: 90, label: '90s' },
@@ -214,7 +214,7 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStartInterview }) =>
                   type="button"
                   key={item.sec}
                   onClick={() => setTimePerQuestion(item.sec)}
-                  className={`flex-1 py-2.5 rounded-xl border font-bold text-xs sm:text-sm transition-all ${
+                  className={`flex-1 py-2 sm:py-2.5 rounded-xl border font-bold text-[11px] sm:text-sm transition-all ${
                     timePerQuestion === item.sec
                       ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-extrabold'
                       : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'

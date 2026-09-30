@@ -37,49 +37,51 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPhase, onNavigate }) => {
   const isConfigActive = !!(storageService.getApiKey() || storageService.getProxyUrl());
 
   return (
-    <nav className="sticky top-0 z-40 bento-panel border-b border-slate-800 px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="sticky top-0 z-40 bento-panel border-b border-slate-800 px-3 sm:px-6 py-3 sm:py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
         
         {/* Brand Logo */}
         <div 
           onClick={() => onNavigate('setup')} 
-          className="flex items-center gap-3 cursor-pointer group"
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer group flex-shrink-0"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-            <Bot className="w-6 h-6 text-slate-950 font-bold" />
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform flex-shrink-0">
+            <Bot className="w-4 h-4 sm:w-6 sm:h-6 text-slate-950 font-bold" />
           </div>
           <div>
-            <div className="font-bold text-lg tracking-tight text-white flex items-center gap-2">
-              JobPilot <span className="text-xs px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono font-bold border border-emerald-500/30">AI MOCK</span>
+            <div className="font-bold text-sm sm:text-lg tracking-tight text-white flex items-center gap-1.5 sm:gap-2">
+              JobPilot <span className="text-[10px] sm:text-xs px-1.5 sm:px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono font-bold border border-emerald-500/30">AI MOCK</span>
             </div>
-            <p className="text-xs text-slate-400">Interactive Video Interview Simulator</p>
+            <p className="text-xs text-slate-400 hidden md:block">Interactive Video Interview Simulator</p>
           </div>
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <button
             onClick={() => onNavigate('setup')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               currentPhase === 'setup'
                 ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <Sparkles className="w-4 h-4 text-emerald-400" />
-            New Interview
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 flex-shrink-0" />
+            <span className="hidden sm:inline">New Interview</span>
+            <span className="sm:hidden">New</span>
           </button>
 
           <button
             onClick={() => onNavigate('history')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+            className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               currentPhase === 'history'
                 ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <History className="w-4 h-4 text-cyan-400" />
-            Past Sessions
+            <History className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 flex-shrink-0" />
+            <span className="hidden sm:inline">Past Sessions</span>
+            <span className="sm:hidden">History</span>
           </button>
 
           {/* API Key Modal Trigger */}
@@ -89,15 +91,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPhase, onNavigate }) => {
               setProxyUrlInput(storageService.getProxyUrl());
               setShowApiKeyModal(true);
             }}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-colors ${
+            className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs font-semibold border transition-colors ${
               isConfigActive
                 ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/20'
                 : 'bg-amber-500/10 text-amber-300 border-amber-500/40 hover:bg-amber-500/20'
             }`}
             title="Configure Gemini API or Proxy Endpoint"
           >
-            <Key className="w-3.5 h-3.5" />
-            {isConfigActive ? 'AI Connected' : 'Demo Mode'}
+            <Key className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="hidden sm:inline">{isConfigActive ? 'AI Connected' : 'Demo Mode'}</span>
+            <span className="sm:hidden">{isConfigActive ? 'AI' : 'Demo'}</span>
           </button>
         </div>
       </div>
